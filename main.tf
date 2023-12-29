@@ -62,7 +62,7 @@ resource "hetznerdns_record" "wildcard" {
     name = "*"
     ttl = 60
     type = "CNAME"
-    value = "awful.engineer"
+    value = "awful.engineer."
 }
 
 # Configure the Hetzner Cloud Provider
