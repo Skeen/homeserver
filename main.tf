@@ -93,6 +93,14 @@ resource "hetznerdns_record" "matrix" {
     }
 }
 
+resource "hetznerdns_record" "wildcard" {
+    zone_id = hetznerdns_zone.dns_zone.id
+    name = "*"
+    ttl = 60
+    type = "CNAME"
+    value = "awful.engineer"
+}
+
 # Configure the Hetzner Cloud Provider
 provider "hcloud" {
   token = data.sops_file.secrets.data["hetzner_cloud_token"]
