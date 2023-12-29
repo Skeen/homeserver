@@ -30,42 +30,6 @@ resource "hetznerdns_zone" "dns_zone" {
     ttl = 3600
 }
 
-locals {
-  github_pages_a = [
-    "185.199.108.153",
-    "185.199.109.153",
-    "185.199.110.153",
-    "185.199.111.153",
-  ]
-  github_pages_aaaa = [
-    "2606:50c0:8000::153",
-    "2606:50c0:8001::153",
-    "2606:50c0:8002::153",
-    "2606:50c0:8003::153",
-  ]
-}
-
-resource "hetznerdns_record" "www" {
-    zone_id = hetznerdns_zone.dns_zone.id
-    name = "www"
-    ttl = 60
-    type = each.value["type"]
-    value = each.value["value"]
-
-    for_each = merge({
-      for ip in local.github_pages_a: ip => {
-        type = "A",
-        value = ip
-      }
-    }, {
-      for ip in local.github_pages_aaaa: ip => {
-        type = "AAAA",
-        value = ip
-      }
-    }
-  )
-}
-
 resource "hetznerdns_record" "ns" {
     zone_id = hetznerdns_zone.dns_zone.id
     name = "@"
