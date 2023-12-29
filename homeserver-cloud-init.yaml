@@ -1,0 +1,28 @@
+#cloud-config
+
+# Install Docker and git
+apt:
+  sources:
+    docker.list:
+      source: deb [arch=amd64] https://download.docker.com/linux/debian $RELEASE stable
+      keyid: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+
+packages:
+  # docker
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-compose-plugin
+  # git
+  - git
+
+# Update packages
+package_update: true
+package_upgrade: true
+
+# Run user init
+runcmd:
+  - cd /opt
+  - git clone https://github.com/Skeen/homeserver.git
+  - cd homeserver/homeserver/
+  - bash up.sh

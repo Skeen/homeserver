@@ -1,0 +1,6 @@
+# creation rules are evaluated sequentially, the first match wins
+creation_rules:
+  - path_regex: .*.enc.yaml
+    age: age1ftfxpq5hwtnu88pmhaykt2actj5v4l6pxuths28mjf7anqz39ctsaxtfsv
+  - path_regex: .*.tfstate
+    age: age1ftfxpq5hwtnu88pmhaykt2actj5v4l6pxuths28mjf7anqz39ctsaxtfsv

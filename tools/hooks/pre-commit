@@ -1,0 +1,4 @@
+#!/bin/bash
+#  .git/hooks/pre-commit
+sops --encrypt terraform.tfstate > terraform.enc.tfstate
+git add terraform.enc.tfstate
